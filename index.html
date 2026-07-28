@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
+    
+    <!-- Configuración Avanzada Open Graph (OG Share) - Conecta Card Oficial -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://demo-belleza.pideya.contact/" />
+    <meta property="og:title" content="SALON MANOS BELLAS | PIDE YA" />
+    <meta property="og:description" content="Disfruta de la mejor experiencia y servicios exclusivos de belleza en SALON GENTE BELLA. Explora nuestros servicios y agenda tu cita con tu CONECTA CARD." />
+    
+    <!-- Infraestructura Multimedia Premium de Imagen de Portada -->
+    <meta property="og:image" content="https://demo-belleza.pideya.contact/og_belleza.jpg" />
+    <meta property="og:image:secure_url" content="https://demo-belleza.pideya.contact/og_belleza.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="1920" />
+    <title>SALON MANOS BELLAS | PIDE YA</title>
+    
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+</head>
+
+    <!-- Estilos exclusivos para el Asistente Modal Integrado -->
+    <style>
+        .btn-asistente-modal {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            padding: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #2c3e50, #1a252f);
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+        .btn-asistente-modal:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .asistente-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .asistente-container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            max-height: 85vh;
+            border-radius: 12px;
+            padding: 20px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            font-family: 'Montserrat', sans-serif;
+            text-align: left;
+        }
+        .asistente-container details {
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border: 1px solid #eee;
+        }
+        .asistente-container summary {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+        }
+        .asistente-container p {
+            color: #555;
+            font-size: 0.83rem;
+            margin-top: 8px;
+            line-height: 1.4;
+            border-top: 1px solid #eaeaea;
+            padding-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    
+    <button id="btn-audio-control" class="audio-toggle" onclick="toggleAudioGlobal()">
+        <i id="audio-icon" class="fas fa-volume-up"></i>
+    </button>
+
+    <section id="portada-hub" class="main-hub">
+        <header class="magazine-header">
+            <div class="header-title-container">
+                <h1 class="agency-name">SALON MANOS BELLAS</h1>
+                <div class="download-track-container">
+                    <!-- Contenido eliminado para limpiar la vista, manteniendo el contenedor -->
+                </div>
+            </div>
+            <img src="assets/brand/logo-mini.png" alt="Logo" class="agency-logo">
+        </header>
+
+        <div class="mosaic-grid">
+            <div class="mosaic-item hero-block" onclick="openProfileZoom()">
+                <img id="profile-pic-img" src="assets/hero/main-photo.jpg" alt="Chongt-Suan Comida China Sabor Tradicional">
+                <div class="hero-overlay">
+                    <span class="edition-label">BIENVENIDOS</span>
+                    <h2 class="hero-title">SALON MANOS BELLAS</h2>
+                </div>
+            </div>
+
+            <div class="mosaic-item menu-block">
+                <div class="magazine-menu-grid">
+                    <button class="mag-btn" onclick="showAppContent('cat1')">
+                        <span class="num">01</span> QUIÉNES SOMOS
+                    </button>
+                    <button class="mag-btn" onclick="showAppContent('cat2')">
+                        <span class="num">02</span> ESTO NOS HACE DIFERENTES
+                    </button>
+                    <button class="mag-btn" onclick="showAppContent('cat3')">
+                        <span class="num">03</span> CLIENTES FELICES
+                    </button>
+                    <button class="mag-btn" onclick="showAppContent('cat4')">
+                        <span class="num">04</span> CONTACTO
+                    </button>
+                </div>
+            </div>
+
+            <div class="mosaic-item video-block" onclick="openYouTubeVideo()">
+                <div class="video-preview" id="yt-iframe-container">
+                    <img src="assets/hero/video-thumb.jpg" alt="Chongt-Suan Comida China Video Preview" id="yt-thumb-img">
+                    <div class="yt-play-mini" id="yt-play-icon"><i class="fab fa-youtube"></i></div>
+                </div>
+                <span class="block-label">CLIC PARA REPRODUCIR</span>
+            </div>
+
+            <div class="mosaic-item lead-block">
+                <button type="button" onclick="abrirMenu()" class="btn-shiny-gold shine-effect" style="width: 100%; border: none; cursor: pointer; text-decoration: none; display: block; text-align: center; padding: 15px; font-weight: bold; border-radius: 5px;">
+                    ¡ORDENA AQUÍ O VISÍTA NUESTRAS SUCURSALES!
+                </button>
+            </div>
+
+            <div id="miMenuContacto" class="menu-oculto" onclick="cerrarMenu()">
+                <div class="menu-contenido" onclick="event.stopPropagation()">
+
+                    <!-- TÍTULO Y MAPA DE UBICACIÓN -->
+                    <div class="bloque-mapa-guia" style="text-align: center; padding: 5px 0 15px 0; width: 100%;">
+                        <h3 style="font-size: 0.95rem; font-weight: bold; color: #fff; text-transform: uppercase; margin-bottom: 4px; font-family: 'Montserrat', sans-serif;">Busca tu sucursal más cercana</h3>
+                        <p style="font-size: 0.7rem; color: rgba(255,255,255,0.7); margin-bottom: 12px; font-family: 'Montserrat', sans-serif; padding: 0 10px;">Ubica tu posición en el mapa de Aguascalientes y elige abajo tu sucursal de preferencia.</p>
+                        
+                        <div class="mapa-wrapper" style="width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid #00f0ff; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d59235.91891913165!2d-102.33128453406325!3d21.886407005481742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sloncheria%20magana%20aguascalientes!5e0!3m2!1ses-419!2smx!4v1718520000000!5m2!1ses-419!2smx" 
+                                width="100%" 
+                                height="220" 
+                                style="border:0; display: block;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- 1. SUCURSAL UNIVERSIDAD -->
+                    <button class="sucursal-accordion-btn" onclick="toggleSucursalAcordeon('suc1')">1. SUCURSAL 1</button>
+                    <div id="suc1-panel" class="sucursal-panel-content">
+                        <div class="sucursal-info-block">
+                            <p class="suc-domicilio"><i class="fas fa-map-marker-alt"></i> Domilicio de la sucursal número 1</p>
+                            <p class="suc-horario"><i class="far fa-clock"></i> 10:00 AM a 8:00 PM | <strong>Descansa:</strong> MARTES</p>
+                            <div class="suc-tags">
+                                <span class="tag si"><i class="fas fa-utensils"></i> Consumo Aquí</span>
+                                <span class="tag no"><i class="fas fa-store"></i> Pide y Recoge</span>
+                                <span class="tag no"><i class="fas fa-motorcycle"></i> Domicilio</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/524491472336" target="_blank" class="btn-menu whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://maps.app.goo.gl/puS48gwyXSSeCRcm6" target="_blank" class="btn-menu maps-btn"><i class="fas fa-location-arrow"></i> Cómo Llegar</a>
+                    </div>
+
+                    <!-- 2. SUCURSAL NACOZARI -->
+                    <button class="sucursal-accordion-btn" onclick="toggleSucursalAcordeon('suc2')">2. SUCURSAL 2</button>
+                    <div id="suc2-panel" class="sucursal-panel-content">
+                        <div class="sucursal-info-block">
+                            <div class="suc-domicilio"><i class="fas fa-map-marker-alt"></i> Domilicio de la sucursal número 2</div>
+                            <div class="suc-horario"><i class="far fa-clock"></i> 10:00 AM a 8:00 PM | <strong>Descansa:</strong> ABIERTO DIARIO</div>
+                            <div class="suc-tags">
+                                <span class="tag si"><i class="fas fa-utensils"></i> Consumo Aquí</span>
+                                <span class="tag si"><i class="fas fa-store"></i> Pide y Recoge</span>
+                                <span class="tag si"><i class="fas fa-motorcycle"></i> Domicilio</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/524491472336" target="_blank" class="btn-menu whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://maps.app.goo.gl/puS48gwyXSSeCRcm6" target="_blank" class="btn-menu maps-btn"><i class="fas fa-location-arrow"></i> Cómo Llegar</a>
+                    </div>
+
+                    <!-- 3. SUCURSAL VILLERIAS -->
+                    <button class="sucursal-accordion-btn" onclick="toggleSucursalAcordeon('suc3')">3. SUCURSAL 3</button>
+                    <div id="suc3-panel" class="sucursal-panel-content">
+                        <div class="sucursal-info-block">
+                            <div class="suc-domicilio"><i class="fas fa-map-marker-alt"></i> Domilicio de la sucursal número 3</div>
+                            <div class="suc-horario"><i class="far fa-clock"></i> 10:00 AM a 8:00 PM | <strong>Descansa:</strong> DOMINGO</div>
+                            <div class="suc-tags">
+                                <span class="tag si"><i class="fas fa-utensils"></i> Consumo Aquí</span>
+                                <span class="tag si"><i class="fas fa-store"></i> Pide y Recoge</span>
+                                <span class="tag si"><i class="fas fa-motorcycle"></i> Domicilio</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/524491472336" target="_blank" class="btn-menu whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://maps.app.goo.gl/puS48gwyXSSeCRcm6" target="_blank" class="btn-menu maps-btn"><i class="fas fa-location-arrow"></i> Cómo Llegar</a>
+                    </div>
+
+                    <!-- 4. SUCURSAL EL TURI -->
+                    <button class="sucursal-accordion-btn" onclick="toggleSucursalAcordeon('suc4')">4. SUCURSAL 4</button>
+                    <div id="suc4-panel" class="sucursal-panel-content">
+                        <div class="sucursal-info-block">
+                            <div class="suc-domicilio"><i class="fas fa-map-marker-alt"></i> Domilicio de la sucursal número 4</div>
+                            <div class="suc-horario"><i class="far fa-clock"></i> 10:00 AM a 8:00 PM | <strong>Descansa:</strong> ABIERTO DIARIO</div>
+                            <div class="suc-tags">
+                                <span class="tag si"><i class="fas fa-utensils"></i> Consumo Aquí</span>
+                                <span class="tag si"><i class="fas fa-store"></i> Pide y Recoge</span>
+                                <span class="tag si"><i class="fas fa-motorcycle"></i> Domicilio</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/524491472336" target="_blank" class="btn-menu whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://maps.app.goo.gl/puS48gwyXSSeCRcm6" target="_blank" class="btn-menu maps-btn"><i class="fas fa-location-arrow"></i> Cómo Llegar</a>
+                    </div>
+
+                    <!-- 5. SUCURSAL PLAZA SAN MARCOS -->
+                    <button class="sucursal-accordion-btn" onclick="toggleSucursalAcordeon('suc5')">5. SUCURSAL 5</button>
+                    <div id="suc5-panel" class="sucursal-panel-content">
+                        <div class="sucursal-info-block">
+                            <div class="suc-domicilio"><i class="fas fa-map-marker-alt"></i> Domilicio de la sucursal número 5</div>
+                            <div class="suc-horario"><i class="far fa-clock"></i> 10:00 AM a 8:00 PM | <strong>Descansa:</strong> ABIERTO DIARIO</div>
+                            <div class="suc-tags">
+                                <span class="tag si"><i class="fas fa-utensils"></i> Consumo Aquí</span>
+                                <span class="tag si"><i class="fas fa-store"></i> Pide y Recoge</span>
+                                <span class="tag no"><i class="fas fa-motorcycle"></i> Domicilio</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/524491472336" target="_blank" class="btn-menu whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://maps.app.goo.gl/puS48gwyXSSeCRcm6" target="_blank" class="btn-menu maps-btn"><i class="fas fa-location-arrow"></i> Cómo Llegar</a>
+                    </div>
+
+                    <!-- 6. SUCURSAL H-E-B -->
+                    <button class="sucursal-accordion-btn" onclick="toggleSucursalAcordeon('suc6')">6. SUCURSAL 6</button>
+                    <div id="suc6-panel" class="sucursal-panel-content">
+                        <div class="sucursal-info-block">
+                            <div class="suc-domicilio"><i class="fas fa-map-marker-alt"></i> Domilicio de la sucursal número 6</div>
+                            <div class="suc-horario"><i class="far fa-clock"></i> 10:00 AM a 11:00 PM | <strong>Descansa:</strong> MIERCOLES</div>
+                            <div class="suc-tags">
+                                <span class="tag si"><i class="fas fa-utensils"></i> Consumo Aquí</span>
+                                <span class="tag si"><i class="fas fa-store"></i> Pide y Recoge</span>
+                                <span class="tag si"><i class="fas fa-motorcycle"></i> Domicilio</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/524491472336" target="_blank" class="btn-menu whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://maps.app.goo.gl/puS48gwyXSSeCRcm6" target="_blank" class="btn-menu maps-btn"><i class="fas fa-location-arrow"></i> Cómo Llegar</a>
+                    </div>
+
+                    <button onclick="cerrarMenu()" class="btn-cerrar">Cerrar</button>
+                </div>
+            </div>
+
+            <!-- BOTÓN 1: RECOMIÉNDANOS Y COMPARTE -->
+            <div class="mosaic-item -block">
+                <button class="btn-magazine-share" onclick="shareExperienceRobust()">
+                    <i class="fas fa-share-alt"></i> RECOMIÉNDANOS Y COMPARTE
+                </button>
+            </div>
+           
+            <!-- BOTÓN 2: AGENDAR CITA (Usa la misma estructura block para ocupar todo el ancho exacto debajo) -->
+            <div class="mosaic-item -block">
+                <a href="https://calendly.com/altpromex/30min?month=2026-07" target="_blank" rel="noopener noreferrer" class="btn-magazine-share" style="background: linear-gradient(135deg, #d836c2, #d836c2); color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-calendar-check" style="margin-right: 6px;">&nbsp;</i> AGENDAR CITA / USO EXCLUSIVO DEL SALON
+                </a>
+            </div>
+
+            <!-- BOTÓN 3: ASISTENTE RÁPIDO Y DUDAS -->
+            <div class="mosaic-item">
+                <button type="button" onclick="abrirAsistente()" class="btn-asistente-modal">
+                    <i class="fas fa-circle-question" style="margin-right: 6px;">&nbsp;</i> ASISTENTE RÁPIDO Y DUDAS
+                </button>
+            </div>
+           
+            <div class="mosaic-item custom-actions-block">
+                <!-- El botón "DESCUBRE QUE NOS HACE DIFERENTES" ha sido eliminado -->
+            </div>
+               
+                <div class="credits-altpro-compact">
+                    <span class="produced-by">PRODUCIDA POR "PIDE YA" CARD</span>
+                    <a href="https://wa.me/524491472336" target="_blank" class="altpro-link">
+                        <i class="fab fa-whatsapp"></i> 449 147 2336
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VENTANA EMERGENTE (MODAL) DEL ASISTENTE INTELIGENTE -->
+    <div id="modalAsistente" class="asistente-overlay" onclick="cerrarAsistente()">
+        <div class="asistente-container" onclick="event.stopPropagation()">
+            <button class="btn-close-circular" style="position: absolute; top: 15px; right: 15px;" onclick="cerrarAsistente()">×</button>
+           
+            <h3 style="text-align: center; color: #1a1a1a; font-size: 1.1rem; font-weight: 800; margin-bottom: 5px; text-transform: uppercase;">
+                <i class="fa-solid fa-circle-question" style="color: #ff4757; margin-right: 6px;"></i> Asistente de Dudas
+            </h3>
+            <p style="text-align: center; color: #666; font-size: 0.8rem; margin-bottom: 20px; border:none; padding:0;">Toca una pregunta para ver la respuesta al instante</p>
+
+            <!-- Pregunta 1: Especialidad y paquetes de uñas -->
+            <details>
+                <summary>¿Qué tipos de técnicas y paquetes de uñas ofrecen?</summary>
+                <p>Ofrecemos aplicación de uñas en acrílico, gelish, polygel, diseño personalizado a mano alzada y paquetes especiales que combinan manicura y pedicura completa.</p>
+            </details>
+
+            <!-- Pregunta 2: Anticipación para citas de uñas -->
+            <details>
+                <summary>¿Con cuánta anticipación debo agendar mi cita para uñas?</summary>
+                <p>Recomendamos agendar con al menos 3 a 5 días de anticipación para asegurar tu horario preferido, especialmente para fines de semana o eventos especiales.</p>
+            </details>
+
+            <!-- Pregunta 3: Mantenimiento y retoques -->
+            <details>
+                <summary>¿Cada cuánto tiempo se recomienda el mantenimiento o retoque?</summary>
+                <p>Sugerimos realizar el mantenimiento de tus uñas acrílicas o de gel entre 2 y 3 semanas para conservar su estructura, evitar filtraciones y mantenerlas impecables.</p>
+            </details>
+
+            <!-- Pregunta 4: Cuidado de uñas naturales y retiro -->
+            <details>
+                <summary>¿Realizan retiro de producto y cuidado para uñas naturales?</summary>
+                <p>¡Sí! Realizamos el retiro profesional de acrílico o gelish con técnicas cuidadosas para no dañar tu uña natural, además de tratamientos de hidratación profunda.</p>
+            </details>
+
+            <!-- Pregunta 5: Métodos de pago y apartado -->
+            <details>
+                <summary>¿Qué métodos de pago aceptan en el salón?</summary>
+                <p>Aceptamos pagos en efectivo, tarjetas bancarias y transferencias electrónicas para tu mayor comodidad al finalizar tu servicio de belleza de manos y uñas.</p>
+            </details>
+            </details>
+        </div>
+    </div>
+
+            <!-- Botón de redirección directa a WhatsApp con contexto -->
+            <div style="margin-top: 20px; text-align: center;">
+                <a href="https://wa.me/524491472336?text=Hola,%20tengo%20una%20duda%20sobre%20su%20comida%20china%20desde%20su%20Conecta%20Card" target="_blank" style="display: block; background: #25d366; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.88rem; box-shadow: 0 3px 10px rgba(37,211,102,0.3);">
+                    <i class="fab fa-whatsapp" style="font-size: 1.1rem; margin-right: 5px;"></i> ¿TIENES OTRA DUDA? ESCRIBENOS
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main id="dynamic-content-layer" class="content-overlay" style="display: none;">
+        <button class="btn-close-circular" onclick="closeAppContent()">×</button>
+        <section class="tab-pane" id="cat1-pane" style="display: none;"><h2 class="pane-title"></h2><div id="grid-cat1" class="carousel-zigzag-grid"></div></section>
+        <section class="tab-pane" id="cat2-pane" style="display: none;"><h2 class="pane-title"></h2><div id="grid-cat2" class="carousel-zigzag-grid"></div></section>
+        <section class="tab-pane" id="cat3-pane" style="display: none;"><h2 class="pane-title"></h2><div id="grid-cat3" class="carousel-zigzag-grid"></div></section>
+        <section class="tab-pane" id="cat4-pane" style="display: none;">
+            <h2 class="pane-title">CONTACTO</h2>
+            <div class="contact-panel-robust">
+                <p class="address-tag"><i class="fas fa-store"></i> ¡Visítanos en cualquiera de nuestras sucursales!</p>
+                <div class="social-vertical-stack">
+                    <!-- Botón 1: Facebook (Mantiene el acceso a Facebook) -->
+                    <a id="link-fb" href="https://www.facebook.com/?locale=es_LA" target="_blank" class="stack-btn fb-color"><i class="fab fa-facebook"></i> FACEBOOK</a>
+
+                    <!-- Botón 2: Instagram -->
+                    <a id="link-insta" href="https://www.instagram.com/my_sing_studio/" target="_blank" class="stack-btn insta-color"><i class="fab fa-instagram"></i> INSTAGRAM</a>
+
+                    <!-- Botón 3: Sitio Web (Imagen simulada) -->
+                    <a id="link-web" href="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" target="_blank" class="stack-btn web-color"><i class="fas fa-globe"></i> SITIO WEB</a>
+                </div>
+                <div class="qr-reubicado-container">
+                    <h4 class="qr-section-heading">ESCANEA EL CÓDIGO QR</h4>
+                    <img src="assets/hero/qr.png" alt="QR Local" class="qr-embedded-img">
+                    <a href="assets/hero/qr.png" download="qr.png" class="btn-download-qr-integrated" onclick="playClickSound()">
+                        <i class="fas fa-cloud-download-alt"></i> COMPARTIR QR
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="lightbox" class="overlay-modal" style="display: none;" onclick="closeLightbox()">
+        <button class="btn-close-circular" onclick="closeLightbox()">×</button>
+        <div class="zoom-premium-content" onclick="event.stopPropagation()">
+            <button class="btn-nav-lightbox btn-prev" onclick="changeLightboxImage(-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="zoom-image-wrapper">
+                <img id="lightbox-image" src="" alt="Zoom">
+                <img src="assets/brand/logo-mini.png" class="mini-logo-zoom-overlay">
+            </div>
+            <button class="btn-nav-lightbox btn-next" onclick="changeLightboxImage(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <div id="text-zoom-modal" class="overlay-modal" style="display: none;" onclick="closeTextZoom()">
+        <div class="text-zoom-card" onclick="event.stopPropagation()">
+            <button class="btn-close-circular" style="top:-20px; right:-20px;" onclick="closeTextZoom()">×</button>
+            <div class="card-branding-header" style="display: flex; align-items: center;">
+                <img src="assets/brand/logo-mini.png" class="card-logo" style="width: 40px; margin-right: 10px;">
+                <h3 id="text-zoom-title"></h3>
+            </div>
+            <hr class="gold-divider" style="border: 0; border-top: 1px solid var(--brand-accent); margin: 15px 0;">
+            <div id="text-zoom-content" style="white-space: pre-line;"></div>
+        </div>
+    </div>
+
+    <audio id="sndFxClick" src="assets/sounds/clic.mp3"></audio>
+    
+    <div id="video-lightbox-overlay" class="overlay-modal" style="display:none;" onclick="closeVideoLightbox()">
+        <button class="btn-close-circular" onclick="closeVideoLightbox()">×</button>
+        <div class="zoom-premium-content" onclick="event.stopPropagation()">
+            <div class="zoom-image-wrapper" style="width: 90%; max-width: 600px;">
+                <iframe id="video-lightbox-frame" style="width: 100%; aspect-ratio: 16/9; border: 3px solid var(--brand-accent); border-radius: 10px;" src="" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de control para abrir y cerrar el modal del asistente -->
+    <script>
+        function abrirAsistente() {
+            document.getElementById('modalAsistente').style.display = 'flex';
+        }
+        function cerrarAsistente() {
+            document.getElementById('modalAsistente').style.display = 'none';
+        }
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

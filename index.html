@@ -290,6 +290,19 @@
                 </a>
             </div>
 
+            <!-- MÓDULO AUTOMATIZADOR DE RESEÑAS EN MAPS (Colocado exactamente en el espacio inferior) -->
+            <div class="mosaic-item -block" style="background: #fafafa; padding: 8px; border-radius: 6px; border: 1px solid #eaeaea;">
+                <label for="clientWhatsapp" style="display: block; font-size: 0.75rem; font-weight: 600; color: #555; margin-bottom: 4px;">
+                    ⭐ Califícanos en Maps (Escribe el Celular):
+                </label>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <input type="tel" id="clientWhatsapp" placeholder="Ej. 4491234567" style="width: 100%; box-sizing: border-box; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem; outline: none;" />
+                    <button onclick="sendReviewWhatsApp()" style="width: 100%; box-sizing: border-box; background-color: #25D366; color: white; border: none; padding: 8px; border-radius: 4px; font-weight: 600; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <i class="fab fa-whatsapp"></i> Enviar 5 Estrellas
+                    </button>
+                </div>
+            </div>
+
             <!-- BOTÓN 3: ASISTENTE RÁPIDO Y DUDAS -->
             <div class="mosaic-item">
                 <button type="button" onclick="abrirAsistente()" class="btn-asistente-modal">
@@ -307,7 +320,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>    
+
 
     <!-- VENTANA EMERGENTE (MODAL) DEL ASISTENTE INTELIGENTE -->
     <div id="modalAsistente" class="asistente-overlay" onclick="cerrarAsistente()">
@@ -319,35 +333,34 @@
             </h3>
             <p style="text-align: center; color: #666; font-size: 0.8rem; margin-bottom: 20px; border:none; padding:0;">Toca una pregunta para ver la respuesta al instante</p>
 
-            <!-- Pregunta 1: Especialidad y paquetes de uñas -->
+            <!-- Pregunta 1: Especialidad y paquetes -->
             <details>
-                <summary>¿Qué tipos de técnicas y paquetes de uñas ofrecen?</summary>
-                <p>Ofrecemos aplicación de uñas en acrílico, gelish, polygel, diseño personalizado a mano alzada y paquetes especiales que combinan manicura y pedicura completa.</p>
+                <summary>¿Ofrecen paquetes especiales para bodas, xv años y eventos sociales?</summary>
+                <p>Claro que sí. Contamos con paquetes especiales de peinado y maquillaje profesional adaptados para novias, quinceañeras y eventos especiales.</p>
             </details>
 
-            <!-- Pregunta 2: Anticipación para citas de uñas -->
+            <!-- Pregunta 2: Anticipación para citas -->
             <details>
-                <summary>¿Con cuánta anticipación debo agendar mi cita para uñas?</summary>
-                <p>Recomendamos agendar con al menos 3 a 5 días de anticipación para asegurar tu horario preferido, especialmente para fines de semana o eventos especiales.</p>
+                <summary>¿Con cuánta anticipación debo agendar mi cita de peinado o maquillaje?</summary>
+                <p>Recomendamos agendar con al menos 1 semana de anticipación, y para bodas o eventos grandes sugerimos apartar tu fecha con mayor tiempo.</p>
             </details>
 
-            <!-- Pregunta 3: Mantenimiento y retoques -->
+            <!-- Pregunta 3: Servicio a domicilio -->
             <details>
-                <summary>¿Cada cuánto tiempo se recomienda el mantenimiento o retoque?</summary>
-                <p>Sugerimos realizar el mantenimiento de tus uñas acrílicas o de gel entre 2 y 3 semanas para conservar su estructura, evitar filtraciones y mantenerlas impecables.</p>
+                <summary>¿Tienen servicio a domicilio o solo atienden en el salón?</summary>
+                <p>Atendemos con un concepto exclusivo en nuestro salón, y también contamos con servicio a domicilio para novias o eventos con previa cotización.</p>
             </details>
 
-            <!-- Pregunta 4: Cuidado de uñas naturales y retiro -->
+            <!-- Pregunta 4: Pruebas de maquillaje -->
             <details>
-                <summary>¿Realizan retiro de producto y cuidado para uñas naturales?</summary>
-                <p>¡Sí! Realizamos el retiro profesional de acrílico o gelish con técnicas cuidadosas para no dañar tu uña natural, además de tratamientos de hidratación profunda.</p>
+                <summary>¿Realizan pruebas de maquillaje y peinado antes del evento?</summary>
+                <p>¡Sí! Contamos con sesiones de prueba especiales para que definamos juntas el look ideal que lucirás en tu día especial.</p>
             </details>
 
             <!-- Pregunta 5: Métodos de pago y apartado -->
             <details>
-                <summary>¿Qué métodos de pago aceptan en el salón?</summary>
-                <p>Aceptamos pagos en efectivo, tarjetas bancarias y transferencias electrónicas para tu mayor comodidad al finalizar tu servicio de belleza de manos y uñas.</p>
-            </details>
+                <summary>¿Qué métodos de pago aceptan y cómo se apartan las fechas?</summary>
+                <p>Aceptamos tarjetas, efectivo y transferencias. Apartas tu fecha o cita especial con el 50% de anticipo y el resto se liquida el día del servicio.</p>
             </details>
         </div>
     </div>
@@ -360,6 +373,36 @@
             </div>
         </div>
     </div>
+
+<script>
+function sendReviewWhatsApp() {
+    const phoneInput = document.getElementById('clientWhatsapp').value.trim();
+    
+    if (!phoneInput) {
+        alert('Por favor, ingresa el número de WhatsApp del cliente.');
+        return;
+    }
+
+    let cleanPhone = phoneInput.replace(/\D/g, '');
+    
+    if (cleanPhone.length === 10) {
+        cleanPhone = '52' + cleanPhone;
+    } else if (cleanPhone.length === 0) {
+        alert('Número inválido.');
+        return;
+    }
+
+    const googleMapsUrl = 'https://maps.app.goo.gl/9TNtm6o6JKLeprAk9'; 
+    
+    const message = encodeURIComponent(
+        "¡Hola! Muchas gracias por visitarnos hoy. Nos encantaría saber qué tal fue tu experiencia. ¿Nos regalarías 5 estrellas en Google Maps? Solo haz clic aquí: " + googleMapsUrl
+    );
+
+    const whatsappUrl = `https://wa.me/${cleanPhone}?text=${message}`;
+    
+    window.open(whatsappUrl, '_blank');
+}
+</script>
 
     <main id="dynamic-content-layer" class="content-overlay" style="display: none;">
         <button class="btn-close-circular" onclick="closeAppContent()">×</button>
